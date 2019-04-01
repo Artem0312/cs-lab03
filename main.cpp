@@ -1,78 +1,78 @@
-# include  < iostream >
-# include  < вектор >
+#include <iostream>
+#include <vector>
 
-использование  пространства имен  std ;
+using namespace std;
 
-ИНТ
-main () {
+int
+main() {
     // Ввод данных
     size_t number_count;
-    cerr << " Введите число: " ;
+    cerr << "Enter number count: ";
     cin >> number_count;
 
-    cerr << " Введите цифры: " ;
-    vector < double > numbers (number_count);
-    for ( size_t i = 0 ; i <number_count; i ++) {
-        cin >> цифры [i];
+    cerr << "Enter numbers: ";
+    vector<double> numbers(number_count);
+    for (size_t i = 0; i < number_count; i++) {
+        cin >> numbers[i];
     }
 
     size_t bin_count;
-    cerr << " Введите количество столбцов: " ;
+    cerr << "Enter column count: ";
     cin >> bin_count;
 
     // Обработка данных
-    double min = числа [ 0 ];
-    double max = числа [ 0 ];
-    для ( двойное число: числа) {
-        if (число <мин) {
-            мин = число;
+    double min = numbers[0];
+    double max = numbers[0];
+    for (double number : numbers) {
+        if (number < min) {
+            min = number;
         }
-        if (number> max) {
-            max = число;
+        if (number > max) {
+            max = number;
         }
     }
 
-    вектор < size_t > бункеров (bin_count);
-    для ( двойное число: числа) {
-        size_t bin = ( size_t ) ((число - мин) / (максимум - мин) * bin_count);
+    vector<size_t> bins(bin_count);
+    for (double number : numbers) {
+        size_t bin = (size_t)((number - min) / (max - min) * bin_count);
         if (bin == bin_count) {
             bin--;
         }
-        Бункеры [бен] ++;
+        bins[bin]++;
     }
 
     // Вывод данных
-    const  size_t SCREEN_WIDTH = 80 ;
-    const  size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1 ;
+    const size_t SCREEN_WIDTH = 80;
+    const size_t MAX_ASTERISK = SCREEN_WIDTH - 4 - 1;
 
-    size_t max_count = 0 ;
-    для ( size_t count: bins) {
-        if (count> max_count) {
-            max_count = количество;
+    size_t max_count = 0;
+    for (size_t count : bins) {
+        if (count > max_count) {
+            max_count = count;
         }
     }
-    const  bool scaling_needed = max_count> MAX_ASTERISK;
+    const bool scaling_needed = max_count > MAX_ASTERISK;
 
-    для ( size_t bin: bin) {
-        if (bin < 100 ) {
-            cout << '  ' ;
+    for (size_t bin : bins) {
+        if (bin < 100) {
+            cout << ' ';
         }
-        if (bin < 10 ) {
-            cout << '  ' ;
+        if (bin < 10) {
+            cout << ' ';
         }
-        cout << bin << " | " ;
+        cout << bin << "|";
 
         size_t height = bin;
         if (scaling_needed) {
-            const  double scaling_factor = ( double ) MAX_ASTERISK / max_count;
-            height = ( size_t ) (bin * scaling_factor);
+            const double scaling_factor = (double)MAX_ASTERISK / max_count;
+            height = (size_t)(bin * scaling_factor);
         }
 
-        for ( size_t i = 0 ; i <высота; i ++) {
-            cout << ' * ' ;
+        for (size_t i = 0; i < height; i++) {
+            cout << '*';
         }
-        cout << ' \ n ' ;
+        cout << '\n';
     }
 
-    вернуть  0 ;
+    return 0;
 }
